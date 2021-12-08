@@ -6,12 +6,14 @@ window.title("Clicker")
 window.config(bg="grey")
 window.geometry("350x200")
 count = 0
-
+state = "neutral"
 
 def f_add():
+    global state
     global count
     count += 1
     counter.configure(text = count)
+    state = "up"
 
 #button to add to count
 add = tkinter.Button(
@@ -25,9 +27,11 @@ add.pack()
 add.place(anchor="center", x=175, y=50)
 
 def f_subtract():
+    global state
     global count
     count -= 1
     counter.configure(text = count)
+    state = "down"
 
 #button to lower count
 subtract = tkinter.Button(
@@ -61,7 +65,21 @@ def calc(event):
 def leave(event):
     window.config(bg="grey")
 
+def doubleClick(event):
+    global count
+    if state == "up":
+        count *= 3
+        counter.configure(text = count)
+    elif state == "down":
+        count //= 3
+        counter.configure(text = count)
+    else:
+        pass
+
+
+
 counter.bind("<Enter>", calc)
 counter.bind("<Leave>", leave)
+counter.bind("<Double-Button>", doubleClick)
 
 window.mainloop()
