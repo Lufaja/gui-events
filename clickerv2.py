@@ -1,5 +1,4 @@
 import tkinter
-from tkinter.constants import Y
 window = tkinter.Tk()
 
 window.title("Clicker")
