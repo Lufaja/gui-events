@@ -131,6 +131,8 @@ def f_randomLabel():
                 exit_event.clear()
                 if t == 0:
                     randomLabel.destroy()
+                    if "Press" in randBind:
+                        window.unbind(var1)
                     popup()
                 pass
             else:
